@@ -64,7 +64,7 @@ public class FutureValueApp {
         return futureValue;
     }
 
-    static public void printAsSingleString(double monthlyInvestment, double interestRate, double years, double futureValue) {
+    public static void printAsSingleString(double monthlyInvestment, double interestRate, double years, double futureValue) {
 
         String results
                 = "Monthly investment:\t"
@@ -81,23 +81,21 @@ public class FutureValueApp {
         System.out.println(results);
     }
 
-    static public NumberFormat setFormat(String input) {
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
-        NumberFormat percent = NumberFormat.getPercentInstance();
+    public static NumberFormat setFormat(String input) {
         NumberFormat result = null;
 
         if ("currency".equalsIgnoreCase(input)) {
             result = NumberFormat.getCurrencyInstance();
         } else if ("percent".equalsIgnoreCase(input)) {
             result = NumberFormat.getPercentInstance();
-            percent.setMinimumFractionDigits(1);
+            result.setMinimumFractionDigits(1);
         } else {
-            System.out.println("No Format Defined");
+            result = NumberFormat.getInstance();
         }
         return result;
     }
 
-    static public void addResultsToArray(String calculations[][], int row, double monthlyInvestment,
+    public static void addResultsToArray(String calculations[][], int row, double monthlyInvestment,
                                          double interestRate, int years, double futureValue) {
         calculations[row][0] = setFormat("currency").format(monthlyInvestment);
         calculations[row][1] = setFormat("percent").format(interestRate / 100);
@@ -105,7 +103,7 @@ public class FutureValueApp {
         calculations[row][3] = setFormat("currency").format(futureValue);
     }
 
-    static public void printResults(String calculations[][], int row) {
+    public static void printResults(String calculations[][], int row) {
         System.out.println();
         System.out.println("Future Value Calculations");
         System.out.println();
